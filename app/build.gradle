@@ -26,6 +26,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    //启用DataBinding
+    dataBinding {
+        enabled true
+    }
 }
 
 dependencies {
@@ -35,6 +39,9 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //非必要依赖， log依赖，如果需要打印OkHttpLog需要添加
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
 
     implementation project(path: ':basicLib')
 }
