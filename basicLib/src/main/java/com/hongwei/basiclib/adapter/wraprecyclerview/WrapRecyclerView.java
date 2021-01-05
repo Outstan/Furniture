@@ -17,6 +17,9 @@ public class WrapRecyclerView extends RecyclerView {
     private WrapRecyclerAdapter mWrapRecyclerAdapter;
     // 这个是列表数据的Adapter
     private Adapter mAdapter;
+    // 空列表数据应该显示的空View
+    // 正在加载数据页面，也就是正在获取后台接口页面
+    private View mEmptyView, mLoadingView;
 
     public WrapRecyclerView(Context context) {
         super(context);
@@ -92,6 +95,8 @@ public class WrapRecyclerView extends RecyclerView {
             // 观察者  列表Adapter更新 包裹的也需要更新不然列表的notifyDataSetChanged没效果
             if (mWrapRecyclerAdapter != mAdapter)
                 mWrapRecyclerAdapter.notifyDataSetChanged();
+
+            dataChanged();
         }
 
         @Override
@@ -100,6 +105,8 @@ public class WrapRecyclerView extends RecyclerView {
             // 观察者  列表Adapter更新 包裹的也需要更新不然列表的notifyDataSetChanged没效果
             if (mWrapRecyclerAdapter != mAdapter)
                 mWrapRecyclerAdapter.notifyItemRemoved(positionStart);
+
+            dataChanged();
         }
 
         @Override
@@ -108,6 +115,8 @@ public class WrapRecyclerView extends RecyclerView {
             // 观察者  列表Adapter更新 包裹的也需要更新不然列表的notifyItemMoved没效果
             if (mWrapRecyclerAdapter != mAdapter)
                 mWrapRecyclerAdapter.notifyItemMoved(fromPosition, toPosition);
+
+            dataChanged();
         }
 
         @Override
@@ -116,6 +125,8 @@ public class WrapRecyclerView extends RecyclerView {
             // 观察者  列表Adapter更新 包裹的也需要更新不然列表的notifyItemChanged没效果
             if (mWrapRecyclerAdapter != mAdapter)
                 mWrapRecyclerAdapter.notifyItemChanged(positionStart);
+
+            dataChanged();
         }
 
         @Override
@@ -124,6 +135,8 @@ public class WrapRecyclerView extends RecyclerView {
             // 观察者  列表Adapter更新 包裹的也需要更新不然列表的notifyItemChanged没效果
             if (mWrapRecyclerAdapter != mAdapter)
                 mWrapRecyclerAdapter.notifyItemChanged(positionStart,payload);
+
+            dataChanged();
         }
 
         @Override
@@ -132,6 +145,36 @@ public class WrapRecyclerView extends RecyclerView {
             // 观察者  列表Adapter更新 包裹的也需要更新不然列表的notifyItemInserted没效果
             if (mWrapRecyclerAdapter != mAdapter)
                 mWrapRecyclerAdapter.notifyItemInserted(positionStart);
+
+            dataChanged();
         }
     };
+
+    /**
+     * 添加一个空列表数据页面
+     */
+    public void addEmptyView(View emptyView) {
+        this.mEmptyView = emptyView;
+    }
+
+    /**
+     * 添加一个正在加载数据的页面
+     */
+    public void addLoadingView(View loadingView) {
+        this.mLoadingView = loadingView;
+    }
+
+    /**
+     * Adapter数据改变的方法
+     */
+    private void dataChanged() {
+        if (mAdapter.getItemCount() == 0) {
+            // 没有数据
+            if (mEmptyView != null) {
+                mEmptyView.setVisibility(VISIBLE);
+            } else {
+                mEmptyView.setVisibility(GONE);
+            }
+        }
+    }
 }

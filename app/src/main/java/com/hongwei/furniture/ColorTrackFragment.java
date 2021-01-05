@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.hongwei.basiclib.adapter.refreshview.DefaultRefreshCreator;
+import com.hongwei.basiclib.adapter.refreshview.RefreshRecyclerView;
+
 /**
  * FileName: ColorTrackFragment
  * Author: XYB
@@ -31,7 +34,9 @@ public class ColorTrackFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_test,container,false);
         textView = view.findViewById(R.id.test);
+
         textView.setText(string);
+
         return view;
     }
 

@@ -5,13 +5,14 @@ import android.content.Context;
 
 import com.hongwei.basiclib.log.LogLevel;
 import com.hongwei.basiclib.network.HttpMethods;
+import com.hongwei.furniture.api.ApiService;
 
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @author xyb
- * @description:
+ * @description:Application
  * @date : 2020-12-31
  */
 public class BaseApplication extends Application {
@@ -25,7 +26,7 @@ public class BaseApplication extends Application {
         //访问网络初始化
         HttpMethods
                 .getInstanceBuilder()
-               // .setBaseUrl(Constants.BASE_URL)//设置域名
+                .setBaseUrl(ApiService.BASE_URL)//设置域名
                 .setLogLevel(LogLevel.ERROR)//设置日志打印级别，使用默认的日志打印才需要设置这个
                 .setLogName("HttpManager")//设置默认日志打印名字
                 .setIsOpenLog(true)//设置是否开启框架默认的日志打印
@@ -36,7 +37,7 @@ public class BaseApplication extends Application {
                 .setReadTimeOut(60)
                 .setConnectTimeOut(60)
                 .setWriteTimeOut(60)
-//                .setInterceptor(new CommonParametersInterceptor())//设置拦截器
+//                .setInterceptor(new CommonParametersInterceptor())//设置单个拦截器
 //                .setNetworkInterceptor(new CommonParametersInterceptor())//设置拦截器
                 .setFactory(GsonConverterFactory.create())//设置自定义解析器
                 .setInterceptors(new HttpLoggingInterceptor());//设置多个拦截器
