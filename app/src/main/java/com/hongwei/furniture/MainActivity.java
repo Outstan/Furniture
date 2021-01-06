@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 
+import com.hongwei.basiclib.adapter.helper.adapterItemTouchHelper;
 import com.hongwei.basiclib.adapter.refreshview.DefaultRefreshCreator;
 import com.hongwei.basiclib.adapter.refreshview.LoadRefreshCreator;
 import com.hongwei.basiclib.adapter.refreshview.LoadRefreshRecyclerView;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mRefreshRecyclerView.addLoadViewCreator(new LoadRefreshCreator());
+        adapterItemTouchHelper.getItemTouchHelper(mRefreshRecyclerView,mAdapter,list).attachToRecyclerView(mRefreshRecyclerView);
     }
 
     private void initdata() {

@@ -35,6 +35,8 @@ public class LoadRefreshRecyclerView extends RefreshRecyclerView {
     public static int LOAD_STATUS_LOOSEN_LOADING = 0x0033;
     // 正在加载更多状态
     public int LOAD_STATUS_LOADING = 0x0044;
+    //当前是否需要刷新或者加载更多
+    public static boolean mFlag = false;
 
     public LoadRefreshRecyclerView(Context context) {
         super(context);
@@ -208,6 +210,10 @@ public class LoadRefreshRecyclerView extends RefreshRecyclerView {
         if (mLoadCreator != null) {
             mLoadCreator.onStopLoad();
         }
+    }
+
+    public void setflag(boolean flag){
+        mFlag = flag;
     }
 
     // 处理加载更多回调监听
