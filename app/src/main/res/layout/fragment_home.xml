@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="model"
+            type="com.hongwei.furniture.modules.main.home.ui.HomeFragment" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.hongwei.basiclib.adapter.refreshview.LoadRefreshRecyclerView
+            android:id="@+id/recyclersa"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+        </com.hongwei.basiclib.adapter.refreshview.LoadRefreshRecyclerView>
+    </LinearLayout>
+</layout>

@@ -35,8 +35,6 @@ public class LoadRefreshRecyclerView extends RefreshRecyclerView {
     public static int LOAD_STATUS_LOOSEN_LOADING = 0x0033;
     // 正在加载更多状态
     public int LOAD_STATUS_LOADING = 0x0044;
-    //当前是否需要刷新或者加载更多
-    public static boolean mFlag = false;
 
     public LoadRefreshRecyclerView(Context context) {
         super(context);
@@ -118,7 +116,7 @@ public class LoadRefreshRecyclerView extends RefreshRecyclerView {
         switch (e.getAction()) {
             case MotionEvent.ACTION_MOVE:
                 // 如果是在最底部才处理，否则不需要处理
-                if (canScrollDown() || mCurrentLoadStatus == LOAD_STATUS_LOADING) {
+                if (mFlag || canScrollDown() || mCurrentLoadStatus == LOAD_STATUS_LOADING) {
                     // 如果没有到达最顶端，也就是说还可以向上滚动就什么都不处理
                     return super.onTouchEvent(e);
                 }
@@ -138,7 +136,6 @@ public class LoadRefreshRecyclerView extends RefreshRecyclerView {
                     setLoadViewMarginBottom(-distanceY);
                     updateLoadStatus(-distanceY);
                     mCurrentDrag = true;
-                    onStopRefresh();
                     return true;
                 }
                 break;
@@ -198,7 +195,7 @@ public class LoadRefreshRecyclerView extends RefreshRecyclerView {
      * 判断是不是滚动到了最顶部，这个是从SwipeRefreshLayout里面copy过来的源代码
      */
     public boolean canScrollDown() {
-        return canScrollVertically( 1);
+        return canScrollVertically(1);
     }
 
     /**
@@ -212,7 +209,7 @@ public class LoadRefreshRecyclerView extends RefreshRecyclerView {
         }
     }
 
-    public void setflag(boolean flag){
+    public void setflag(boolean flag) {
         mFlag = flag;
     }
 

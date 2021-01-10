@@ -1,17 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.hongwei.basiclib.adapter.refreshview.LoadRefreshRecyclerView
-        android:id="@+id/recyclersa"
+    <data>
+
+        <variable
+            name="model"
+            type="com.hongwei.furniture.modules.main.MainActivity" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".modules.main.MainActivity">
 
-    </com.hongwei.basiclib.adapter.refreshview.LoadRefreshRecyclerView>
+        <FrameLayout
+            android:id="@+id/main_holder"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-</LinearLayout>
+        <RadioGroup
+            android:id="@+id/main_radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/Gainsboro"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/tab_home"
+                style="@style/TabRadioButton"
+                android:checked="true"
+                android:drawableTop="@drawable/selector_tab_home"
+                android:text="首页" />
+
+            <RadioButton
+                android:id="@+id/tab_message"
+                style="@style/TabRadioButton"
+                android:drawableTop="@drawable/selector_tab_message"
+                android:text="消息" />
+
+            <RadioButton
+                android:id="@+id/tab_me"
+                style="@style/TabRadioButton"
+                android:drawableTop="@drawable/selector_tab_me"
+                android:text="我" />
+        </RadioGroup>
+    </LinearLayout>
+</layout>

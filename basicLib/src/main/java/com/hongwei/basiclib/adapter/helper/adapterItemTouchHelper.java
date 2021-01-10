@@ -75,7 +75,7 @@ public class adapterItemTouchHelper {
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 // 获取当前删除的位置
                 int position = viewHolder.getAdapterPosition();
-                mItems.remove(position - 1);
+                mItems.remove(position-1);
                 // adapter 更新notify当前位置删除
                 mAdapter.notifyItemRemoved(position);
             }

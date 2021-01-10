@@ -40,6 +40,8 @@ public class RefreshRecyclerView extends WrapRecyclerView {
     public int REFRESH_STATUS_LOOSEN_REFRESHING = 0x0033;
     // 正在刷新状态
     public int REFRESH_STATUS_REFRESHING = 0x0033;
+    //当前是否需要刷新或者加载更多
+    public static boolean mFlag = false;
 
     public RefreshRecyclerView(Context context) {
         super(context);
@@ -122,7 +124,7 @@ public class RefreshRecyclerView extends WrapRecyclerView {
         switch (e.getAction()) {
             case MotionEvent.ACTION_MOVE:
                 // 如果是在最顶部才处理，否则不需要处理
-                if (canScrollUp() || mCurrentRefreshStatus == REFRESH_STATUS_REFRESHING) {
+                if (mFlag || canScrollUp() || mCurrentRefreshStatus == REFRESH_STATUS_REFRESHING) {
                     // 如果没有到达最顶端，也就是说还可以向上滚动就什么都不处理
                     return super.onTouchEvent(e);
                 }

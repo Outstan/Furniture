@@ -1,4 +1,4 @@
-package com.hongwei.furniture.bean;
+package com.hongwei.furniture.entity;
 
 /**
  * @author xyb

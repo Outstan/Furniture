@@ -11,7 +11,7 @@ import com.hongwei.basiclib.R;
 
 /**
  * @author xyb
- * @description:
+ * @description:上拉加载
  * @date : 2021-01-05
  */
 public class LoadRefreshCreator extends LoadViewCreator{

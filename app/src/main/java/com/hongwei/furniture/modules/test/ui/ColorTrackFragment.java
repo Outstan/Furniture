@@ -1,4 +1,4 @@
-package com.hongwei.furniture;
+package com.hongwei.furniture.modules.test.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,8 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.hongwei.basiclib.adapter.refreshview.DefaultRefreshCreator;
-import com.hongwei.basiclib.adapter.refreshview.RefreshRecyclerView;
+import com.hongwei.furniture.R;
 
 /**
  * FileName: ColorTrackFragment

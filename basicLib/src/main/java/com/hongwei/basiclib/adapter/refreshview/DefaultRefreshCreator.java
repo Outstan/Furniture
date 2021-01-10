@@ -11,7 +11,7 @@ import com.hongwei.basiclib.R;
 
 /**
  * @author xyb
- * @description:带头部的recyclerview
+ * @description:带头部的recyclerview 刷新
  * @date : 2021-01-05
  */
 public class DefaultRefreshCreator extends RefreshViewCreator {

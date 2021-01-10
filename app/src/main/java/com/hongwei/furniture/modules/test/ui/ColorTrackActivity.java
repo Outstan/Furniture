@@ -1,4 +1,4 @@
-package com.hongwei.furniture;
+package com.hongwei.furniture.modules.test.ui;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.hongwei.basiclib.colortracktextview.ColorTrackTextView;
 import com.hongwei.basiclib.colortracktextview.IndicatorBaseAdapter;
 import com.hongwei.basiclib.colortracktextview.TrackIndicatorView;
+import com.hongwei.furniture.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ import java.util.List;
  * Date: 2020/12/25
  * Description: ColorTrackTextView测试Activity
  */
-public class MainActivity1 extends AppCompatActivity {
+public class ColorTrackActivity extends AppCompatActivity {
 
     private String[] items = {"直播", "推荐", "视频", "图片", "段子", "精华"};
     private TrackIndicatorView mIndicatorContainer;
@@ -126,7 +127,7 @@ public class MainActivity1 extends AppCompatActivity {
 
             @Override
             public View getBottomTrackView() {
-                View view = new View(MainActivity1.this);
+                View view = new View(ColorTrackActivity.this);
                 view.setBackgroundColor(Color.RED);
                 view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,8));
                 return view;
