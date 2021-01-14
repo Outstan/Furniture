@@ -1,6 +1,5 @@
 package com.hongwei.furniture.modules.main;
 
-import android.widget.FrameLayout;
 import android.widget.RadioGroup;
 
 import androidx.fragment.app.Fragment;
@@ -20,8 +19,8 @@ public class MainActivity extends BaseNoModelActivity<ActivityMainBinding> imple
     private HomeFragment mHomeFragment;
     private MeFragment mMeFragment;
     private MessageFragment mMessageFragment;
-    private Fragment mCurrentFragment;
     private FragmentTransaction ft;
+    private Fragment mCurrentFragment;
 
     @Override
     protected int onCreate() {
@@ -31,15 +30,14 @@ public class MainActivity extends BaseNoModelActivity<ActivityMainBinding> imple
     @Override
     protected void initView() {
         mRadioGroup = dataBinding.mainRadiogroup;
+        mHomeFragment = HomeFragment.getInstance();
+        mMessageFragment = MessageFragment.getInstance();
+        mMeFragment = MeFragment.getInstance();
 
         manager = getSupportFragmentManager();
         mRadioGroup.setOnCheckedChangeListener(this);
 
-        mHomeFragment = HomeFragment.getInstance();
-        ft = manager.beginTransaction();
-        ft.add(R.id.main_holder,mHomeFragment);
-        mCurrentFragment = mHomeFragment;
-        ft.commit();
+        SwitchFragment(mHomeFragment);
     }
 
     @Override
@@ -47,39 +45,44 @@ public class MainActivity extends BaseNoModelActivity<ActivityMainBinding> imple
 
     }
 
+    /**
+     * RadioGroup 点击监听
+     */
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        ft = manager.beginTransaction();
-        ft.hide(mCurrentFragment);
         switch (checkedId) {
             case R.id.tab_home:
-                if (mHomeFragment != null){
-                    ft.show(mHomeFragment);
-                }else {
-                    mHomeFragment = HomeFragment.getInstance();
-                    ft.add(R.id.main_holder,mHomeFragment);
-                }
-                mCurrentFragment = mHomeFragment;
+                SwitchFragment(mHomeFragment);
                 break;
             case R.id.tab_message:
-                if (mMessageFragment != null){
-                    ft.show(mMessageFragment);
-                }else {
-                    mMessageFragment = MessageFragment.getInstance();
-                    ft.add(R.id.main_holder,mMessageFragment);
-                }
-                mCurrentFragment = mMessageFragment;
+                SwitchFragment(mMessageFragment);
                 break;
             case R.id.tab_me:
-                if (mMeFragment != null){
-                    ft.show(mMeFragment);
-                }else {
-                    mMeFragment = MeFragment.getInstance();
-                    ft.add(R.id.main_holder,mMeFragment);
-                }
-                mCurrentFragment = mMeFragment;
+                SwitchFragment(mMeFragment);
                 break;
         }
+    }
+
+    /**
+     * fragment切换
+     *
+     * @param targetFragment
+     */
+    private void SwitchFragment(Fragment targetFragment) {
+        ft = manager.beginTransaction();
+        if (mCurrentFragment != null) {
+            if (mCurrentFragment == targetFragment)
+                return;
+            ft.hide(mCurrentFragment);
+        }
+        //isAdded() 如果该Fragment对象被添加到了它的Activity中，那么它返回true，否则返回false。
+        if (targetFragment.isAdded()) {
+            ft.show(targetFragment);
+        } else {
+            ft.add(R.id.main_holder, targetFragment, targetFragment.getClass().getName());
+        }
+        mCurrentFragment = targetFragment;
         ft.commit();
     }
+
 }
