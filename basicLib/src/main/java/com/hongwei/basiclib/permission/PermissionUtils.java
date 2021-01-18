@@ -36,7 +36,7 @@ public class PermissionUtils {
         //获取class中所有方法 去遍历
         Method[] methods = reflectObject.getClass().getDeclaredMethods();
         for (Method method: methods){
-            PermissionSucced succedMethod = method.getAnnotation(PermissionSucced.class);
+            PermissionSuccess succedMethod = method.getAnnotation(PermissionSuccess.class);
             if (succedMethod!=null){
                 int methodCode = succedMethod.requestCode();
                 if (methodCode == requestCode){

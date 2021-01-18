@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PermissionSucced {
+public @interface PermissionSuccess {
 
     int requestCode();//请求码
 }

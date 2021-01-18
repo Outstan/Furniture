@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
+import com.hongwei.basiclib.permission.PermissionHelper;
 import com.hongwei.basiclib.utils.ActivityUtil;
 import com.hongwei.basiclib.view.LoadingDialog;
 
@@ -94,5 +95,16 @@ public abstract class BaseNoModelActivity<DB extends ViewDataBinding> extends Ap
             dataBinding.unbind();
         }
         ActivityUtil.getInstance().removeActivity(this);
+    }
+
+    /**
+     * 权限回调处理
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        PermissionHelper.requestPermissionsResult(this, requestCode,permissions);
     }
 }
