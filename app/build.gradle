@@ -42,6 +42,8 @@ dependencies {
 
     //非必要依赖， log依赖，如果需要打印OkHttpLog需要添加
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+    //Logger日志工具
+    implementation 'com.orhanobut:logger:2.2.0'
 
     implementation project(path: ':basicLib')
 }
